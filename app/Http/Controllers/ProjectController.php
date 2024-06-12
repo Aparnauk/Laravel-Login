@@ -81,10 +81,6 @@ class ProjectController extends Controller
         return inertia('Project/Edit',[
             'project'=> new ProjectResource($project),
         ]);
-
-        
-
-
     }
 
     /**

@@ -84,13 +84,13 @@ export default function Create({ auth, users, project }) {
                                         onChange={(e) => setData("user_id", e.target.value)}
                                     >
 
-                                        {users.map(user => (
+                                        {/* {users.map(user => (
 
                                             <option value={user.id}>
                                                 {user.name}
                                                 </option>
 
-                                         ))}
+                                         ))} */}
 
 
                                     </select>

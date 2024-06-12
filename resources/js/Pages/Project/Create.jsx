@@ -9,7 +9,7 @@ import { Head, Link, useForm } from "@inertiajs/react";
 
 export default function Create({ auth, users, projects }) {
 
-    console.log(users);
+    // console.log(users);
     const { data, setData, post, errors, reset } = useForm({
         name: '',
         user_id: '',
