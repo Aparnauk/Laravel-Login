@@ -6,7 +6,6 @@ use App\Models\Project;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Http\Resources\ProjectResource;
-
 use Inertia\Inertia;
 
 class ProjectController extends Controller
@@ -17,11 +16,12 @@ class ProjectController extends Controller
     public function index()
     {
 
-        $query = Project::query();
-        $projects = $query->paginate(10)->onEachSide(1);
-        // dd($projects);
 
-        return inertia("Project/Index",[
+        $projects = Project::paginate(10);
+
+
+
+        return Inertia::render("Project/Index",[
             "projects" => ProjectResource::collection($projects)
         ]);
     }
@@ -31,7 +31,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Project/Index');
+        return Inertia('Project/Create ');
     }
 
     /**
@@ -39,8 +39,13 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
-        User::create($request->validated());
-        return redirect(route("project.index"));
+
+        $data = $request->validated();
+
+
+        Project::create($data);
+
+        return to_route('project.index');
 
     }
 
@@ -57,7 +62,7 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        //
+
     }
 
     /**
@@ -65,7 +70,7 @@ class ProjectController extends Controller
      */
     public function update(UpdateProjectRequest $request, Project $project)
     {
-        //
+
     }
 
     /**
@@ -73,6 +78,6 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        //
+
     }
 }

@@ -18,7 +18,7 @@ class UserController extends Controller
 
         $users = User::paginate(10);
 
-        // dd("hi");
+
 
         return Inertia::render("User/Index",[
             "users" => UserResource::collection($users)
@@ -30,7 +30,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return inertia("User/Create");
     }
 
     /**
@@ -38,7 +38,11 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
-        //
+        $data = $request->validated();
+        // dd($data);
+
+        User::create($data);
+        return to_route('user.index');
     }
 
     /**
@@ -54,7 +58,9 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return inertia('User/Edit',[
+            'user' => new UserResource($user),
+        ]);
     }
 
     /**
@@ -62,7 +68,9 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user)
     {
-        //
+        $data = $request->validated();
+        $user->update($data);
+        return to_route('user.index');
     }
 
     /**
@@ -70,6 +78,8 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+
+        $user->delete();
+        return to_route('user.index');
     }
 }

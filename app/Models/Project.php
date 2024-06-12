@@ -9,7 +9,15 @@ class Project extends Model
 {
     use HasFactory;
 
-    public function admins(){
-        return $this->hasMany(Admin::class);
+    protected $fillable = [
+        'name',
+        'user',
+        'description',
+    ];
+
+    public function projects(){
+        return $this->hasMany(Project::class);
     }
+
+
 }

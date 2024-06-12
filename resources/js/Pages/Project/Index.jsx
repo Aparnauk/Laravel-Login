@@ -1,5 +1,6 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import { Head } from "@inertiajs/react";
+import { Head, Link } from "@inertiajs/react";
+
 
 
 export default function Index(auth, projects) {
@@ -7,9 +8,22 @@ export default function Index(auth, projects) {
     return (
         <AuthenticatedLayout
             user={auth.user}
-            header={<h2 className="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                Projects
-            </h2>}
+            header={
+
+                <div className="flex justify-between items-center">
+                    <h2 className="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+                        Projects
+                    </h2>
+
+                    <Link
+                        href={route("project.create")}
+                        className="text-white bg-success p-3 rounded"
+                    ><i class="fa-solid fa-plus fa-beat-fade"></i> Add New</Link>
+                </div>
+
+            }
+
+
         >
 
             <Head title="Projects" />
@@ -18,46 +32,62 @@ export default function Index(auth, projects) {
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div className="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
 
-                        <form className='bg-black  '>
+                        <form className='bg-black'>
+
+                            <table>
+                                <thead className='text-white'>
+                                    <tr >
+                                        <th className="px-5 py-3 ">
+                                            ID
+                                        </th>
+
+                                        <th className="px-5 py-3 ">
+                                            Name
+                                        </th>
+
+                                        <th className="px-5 py-3 ">
+                                            User Details
+                                        </th>
+
+                                        <th className="px-5 py-3 ">
+                                            Description
+                                        </th>
+                                        <th className="px-5 py-3 ">
+
+                                        </th>
+
+                                        <th className="px-5 py-3 ">
+
+                                        </th>
+                                    </tr>
+                                </thead>
 
 
-                            {/* {projects.data ?(
-                            projects.data.map((project) => (
+                                {/* <tbody className="px-5 py-3 ">
+                                    {projects.data.map(project => (
+                                        <tr >
+                                            <th scope="row">{project.id}</th>
+                                            <td>{project.name}</td>
+                                            <td>{project.user}</td>
+                                            <td>{project.description}</td>
+                                            <td>
+                                                <Link href={route("project.edit", project.id)}>
+                                                    <i className="fa-solid fa-pen-to-square  text-warning"></i>
+                                                </Link>
+                                            </td>
+                                            <td>
+                                                <button onClick={e => deleteProject(project)}>
+                                                    <i class="fa-solid fa-trash-can  text-danger"></i>
+                                                </button>
+                                            </td>
 
-                                <div>
-                                    <div>
-                                    <label htmlFor="" className='m-5 text-white'>ID :</label>
-                                    <input type="text" onChange={project.id}/>
-                                </div>
+                                        </tr>
+                                    ))}
 
-                                <div>
-                                    <label htmlFor="" className='m-5 text-white'>Project Name :</label>
+                                </tbody> */}
 
-                                    <input onChange={project.name} type="text" />
-                                </div>
+                            </table>
 
-                                <div>
-                                    <label htmlFor="" className='m-5 text-white'>Users Details :</label>
-
-                                    <select name="" id="">
-                                        <option value="">{project.user}</option>
-                                    </select>
-                                </div>
-
-
-                                <div>
-                                    <label htmlFor="" className='m-5 text-white'>Description :</label>
-                                    <input type="text" className="p-5" onChange={project.description}/>
-                                </div>
-                                </div>)
-
-                            )): (<p>Loading</p>)} */}
-
-
-
-                            <div className="text-center m-5">
-                                <button className="btn btn-success p-2 w-50">Submit</button>
-                            </div>
                         </form>
 
                     </div>
