@@ -11,13 +11,16 @@ class Project extends Model
 
     protected $fillable = [
         'name',
-        'user',
+        'user_id',
         'description',
     ];
 
     public function projects(){
-        return $this->hasMany(Project::class);
+        return $this->belongsToMany(Project::class);
     }
 
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
 
 }

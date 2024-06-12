@@ -23,8 +23,14 @@ class StoreProjectRequest extends FormRequest
     {
         return [
             "name" => ['required','string', 'max:100'],
-            'user_details' => ['required'],
+            'user_id' => ['nullable', 'required'],
             'description' => ['string']
         ];
+
+        // $validated = $request->validate([
+        //     'name' => ,
+        //     'user_id' => 'required|exists:users,id',
+        //     'description' => 'required|string',
+        // ]);
     }
 }

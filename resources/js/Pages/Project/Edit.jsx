@@ -7,30 +7,18 @@ import { Head, Link, useForm } from "@inertiajs/react";
 
 
 
-export default function Create({ auth, users, projects }) {
+export default function Create({ auth, users, project }) {
 
     console.log(users);
-    const { data, setData, post, errors, reset } = useForm({
-        name: '',
-        user_id: '',
-        description: ''
+    const { data, setData, put, errors, reset } = useForm({
+        name: project.name || "",
+        user_id: project.user_id || "",
+        description: project.description || ""
     });
 
     const onsubmit = (e) => {
         e.preventDefault();
-        post(route("project.store"),
-            {
-                // data: {
-                //     name: data.name,
-                //     user: data.user,
-                //     description: data.description,
-                // },
-
-                onSuccess: () => {
-                    reset();
-                    // Inertia.visit(route('project.index'));
-                }
-            });
+        put(route("project.update", project.id));
     };
 
     return (
@@ -40,7 +28,7 @@ export default function Create({ auth, users, projects }) {
 
                 <div className="flex justify-between items-center">
                     <h2 className="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                        Create New Project
+                        Edit Project
                     </h2>
                 </div>
 

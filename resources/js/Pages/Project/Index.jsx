@@ -1,9 +1,20 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import { Head, Link } from "@inertiajs/react";
+import { Head, Link, router } from "@inertiajs/react";
 
 
 
-export default function Index(auth, projects) {
+export default function Index({auth, projects}) {
+    // console.log(projects);
+
+    // delete
+    const deleteProject = (project, e) => {
+        e.preventDefault();
+        if (!window.confirm('Are you sure you want to delete the Project?')){
+            return;
+        }
+        router.delete(route('project.destroy', project.id))
+    }
+
 
     return (
         <AuthenticatedLayout
@@ -63,12 +74,12 @@ export default function Index(auth, projects) {
                                 </thead>
 
 
-                                {/* <tbody className="px-5 py-3 ">
+                                <tbody className="px-5 py-3 text-white">
                                     {projects.data.map(project => (
-                                        <tr >
+                                        <tr className="text-align-center ms-5">
                                             <th scope="row">{project.id}</th>
                                             <td>{project.name}</td>
-                                            <td>{project.user}</td>
+                                            <td>{project.user_id}</td>
                                             <td>{project.description}</td>
                                             <td>
                                                 <Link href={route("project.edit", project.id)}>
@@ -76,15 +87,16 @@ export default function Index(auth, projects) {
                                                 </Link>
                                             </td>
                                             <td>
-                                                <button onClick={e => deleteProject(project)}>
+                                                <button onClick={(e) => deleteProject(project, e)}
+                                                    >
                                                     <i class="fa-solid fa-trash-can  text-danger"></i>
                                                 </button>
                                             </td>
 
                                         </tr>
-                                    ))}
+                                     ))}
 
-                                </tbody> */}
+                                </tbody>
 
                             </table>
 

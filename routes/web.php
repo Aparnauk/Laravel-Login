@@ -20,9 +20,11 @@ Route::middleware(['auth', 'verified'])->group(function (){
 
 });
 
-Route::get('/projects/create', function () {
-    return Inertia::render('Project/Create');
-})->name('project.create');
+// Route::get('/projects/create', function () {
+//     return Inertia::render('Project/Create');
+// })->name('project.create');
+
+// Route::post('/projects', 'ProjectController@store')->name('project.store');
 
 
 Route::middleware('auth')->group(function () {

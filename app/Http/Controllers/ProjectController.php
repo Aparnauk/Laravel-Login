@@ -6,10 +6,13 @@ use App\Models\Project;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Http\Resources\ProjectResource;
+use App\Models\User;
 use Inertia\Inertia;
 
 class ProjectController extends Controller
 {
+
+
     /**
      * Display a listing of the resource.
      */
@@ -31,7 +34,12 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return Inertia('Project/Create ');
+        $users = User::all();
+        // dd($users);
+        return Inertia::render('Project/Create', [
+            "users"=> $users
+        ]);
+
     }
 
     /**
@@ -41,11 +49,19 @@ class ProjectController extends Controller
     {
 
         $data = $request->validated();
+        // dd($data);
+
+        Project::create([
+            'name' => $data['name'],
+            'user_id' => $data['user_id'],
+            'description' => $data['description'],
+        ]);
 
 
         Project::create($data);
 
         return to_route('project.index');
+        // return redirect()->route('projects.index');
 
     }
 
@@ -62,6 +78,12 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
+        return inertia('Project/Edit',[
+            'project'=> new ProjectResource($project),
+        ]);
+
+        
+
 
     }
 
@@ -70,7 +92,9 @@ class ProjectController extends Controller
      */
     public function update(UpdateProjectRequest $request, Project $project)
     {
+        $project->update($request->validated());
 
+        return to_route('project.index');
     }
 
     /**
@@ -78,6 +102,9 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
+
+        $project->delete();
+        return to_route('project.index');
 
     }
 }
