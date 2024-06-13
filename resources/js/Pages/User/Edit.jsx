@@ -5,7 +5,7 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, Link, useForm } from "@inertiajs/react";
 
 export default function Edit({ auth, user }) {
-    console.log(user);
+    
     const { data, setData, put, errors, reset } = useForm({
         name: user.name || '',
         phone_number: user.phone_number || '',
