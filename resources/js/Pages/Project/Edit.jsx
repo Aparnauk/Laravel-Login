@@ -84,13 +84,17 @@ export default function Create({ auth, users, project }) {
                                         onChange={(e) => setData("user_id", e.target.value)}
                                     >
 
-                                        {/* {users.map(user => (
+                                        <option value={''}>
+                                            Please select a user
+                                        </option>
+
+                                        {users.map(user => (
 
                                             <option value={user.id}>
                                                 {user.name}
-                                                </option>
+                                            </option>
 
-                                         ))} */}
+                                        ))}
 
 
                                     </select>
@@ -110,11 +114,9 @@ export default function Create({ auth, users, project }) {
 
                                     <TextAreaInput
                                         id="project_description"
-                                        // type="text"
                                         name="description"
                                         value={data.description}
                                         className="mt-1 block w-full"
-                                        // isFocused={true}
                                         onChange={(e) => setData("description", e.target.value)}
                                     />
 

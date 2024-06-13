@@ -4,10 +4,9 @@ import { Head, Link, router } from "@inertiajs/react";
 
 export default function Index({ auth, users }) {
 
-
     // delete
     const deleteUser = (user) => {
-        if (!window.confirm('Are you sure you want to delete the user?')){
+        if (!window.confirm('Are you sure you want to delete the user?')) {
             return;
         }
         router.delete(route('user.destroy', user.id))
@@ -23,8 +22,6 @@ export default function Index({ auth, users }) {
                         Users
                     </h2>
 
-
-
                     <Link
                         href={route("user.create")}
                         className="text-white bg-success p-3 rounded"
@@ -36,13 +33,7 @@ export default function Index({ auth, users }) {
 
             <Head title="Users" />
 
-
-
             <div className="table table-dark table-striped">
-
-
-
-
                 <table>
                     <thead >
                         <tr >
@@ -79,13 +70,13 @@ export default function Index({ auth, users }) {
                                 <td>{user.phone_number}</td>
                                 <td>{user.email}</td>
                                 <td>
-                                    <Link href={route("user.edit",user.id)}>
-                                    <i className="fa-solid fa-pen-to-square  text-warning"></i>
+                                    <Link href={route("user.edit", user.id)}>
+                                        <i className="fa-solid fa-pen-to-square  text-warning"></i>
                                     </Link>
                                 </td>
                                 <td>
                                     <button onClick={e => deleteUser(user)}>
-                                    <i class="fa-solid fa-trash-can  text-danger"></i>
+                                        <i class="fa-solid fa-trash-can  text-danger"></i>
                                     </button>
                                 </td>
 

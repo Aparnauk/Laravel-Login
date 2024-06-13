@@ -17,9 +17,6 @@ class UserController extends Controller
     {
 
         $users = User::paginate(10);
-
-
-
         return Inertia::render("User/Index",[
             "users" => UserResource::collection($users)
         ]);
@@ -39,13 +36,8 @@ class UserController extends Controller
     public function store(StoreUserRequest $request)
     {
         $data = $request->validated();
-
         $data['username'] = $data['name'];
-        // dd($data);
-
-
         User::create($data);
-
         return to_route('user.index');
     }
 

@@ -1,15 +1,12 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, Link, router } from "@inertiajs/react";
 
-
-
-export default function Index({auth, projects}) {
-    // console.log(projects);
+export default function Index({ auth, projects }) {
 
     // delete
     const deleteProject = (project, e) => {
         e.preventDefault();
-        if (!window.confirm('Are you sure you want to delete the Project?')){
+        if (!window.confirm('Are you sure you want to delete the Project?')) {
             return;
         }
         router.delete(route('project.destroy', project.id))
@@ -33,8 +30,6 @@ export default function Index({auth, projects}) {
                 </div>
 
             }
-
-
         >
 
             <Head title="Projects" />
@@ -75,7 +70,9 @@ export default function Index({auth, projects}) {
 
 
                                 <tbody className="px-5 py-3 text-white">
+
                                     {projects.data.map(project => (
+
                                         <tr className="text-align-center ms-5">
                                             <th scope="row">{project.id}</th>
                                             <td>{project.name}</td>
@@ -88,13 +85,14 @@ export default function Index({auth, projects}) {
                                             </td>
                                             <td>
                                                 <button onClick={(e) => deleteProject(project, e)}
-                                                    >
+                                                >
                                                     <i class="fa-solid fa-trash-can  text-danger"></i>
                                                 </button>
                                             </td>
 
                                         </tr>
-                                     ))}
+
+                                    ))}
 
                                 </tbody>
 

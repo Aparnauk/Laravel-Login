@@ -17,17 +17,6 @@ class ProjectResource extends JsonResource
 
     public function toArray(Request $request): array
     {
-      //name, description, user_id
       return parent::toArray($request);
-    //   [
-
-        // 'id' => $this->id,
-        // 'name' => $this->name,
-        // 'user_id'=>new UserResource($this->user_id),
-        // 'description'=>$this->description,
-
-    //   ];
-
-
     }
 }

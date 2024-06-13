@@ -9,7 +9,6 @@ import { Head, Link, useForm } from "@inertiajs/react";
 
 export default function Create({ auth, users, projects }) {
 
-    // console.log(users);
     const { data, setData, post, errors, reset } = useForm({
         name: '',
         user_id: '',
@@ -20,15 +19,8 @@ export default function Create({ auth, users, projects }) {
         e.preventDefault();
         post(route("project.store"),
             {
-                // data: {
-                //     name: data.name,
-                //     user: data.user,
-                //     description: data.description,
-                // },
-
                 onSuccess: () => {
                     reset();
-                    // Inertia.visit(route('project.index'));
                 }
             });
     };
@@ -96,13 +88,17 @@ export default function Create({ auth, users, projects }) {
                                         onChange={(e) => setData("user_id", e.target.value)}
                                     >
 
+                                        <option value={''}>
+                                            Please select a user
+                                        </option>
+
                                         {users.map(user => (
 
                                             <option value={user.id}>
                                                 {user.name}
-                                                </option>
+                                            </option>
 
-                                         ))}
+                                        ))}
 
 
                                     </select>
